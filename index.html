@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealAhhjit27's Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+        .code-block {
+            background: #1a202c;
+            padding: 1rem;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+        .neon-text {
+            text-shadow: 0 0 10px #fff, 0 0 20px #ff6b6b, 0 0 30px #4ecdc4;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <header class="text-center mb-8">
+        <h1 class="text-5xl font-bold neon-text">RealAhhjit27's Portfolio</h1>
+        <p class="text-2xl mt-2">Professional Roblox Scripter & Builder</p>
+        <p class="text-xl mt-2 text-green-300">Open to New Projects!</p>
+    </header>
+
+    <main class="w-full max-w-4xl">
+        <section class="section">
+            <h2 class="text-3xl font-semibold mb-4">About Me</h2>
+            <p class="text-lg">
+                Hey there! I'm RealAhhjit27, a passionate Roblox scripter and builder with a knack for creating immersive and engaging experiences. My expertise lies in crafting advanced systems like combat mechanics, fishing systems, and more. I'm always open to new projects and collaborations to bring your Roblox ideas to life!
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="text-3xl font-semibold mb-4">Portfolio Highlights</h2>
+            <p class="text-lg mb-4">Below are some examples of my work, showcasing my skills in Roblox Lua scripting with professional-grade systems.</p>
+
+            <h3 class="text-2xl font-medium mb-2">Advanced Combat System</h3>
+            <p class="mb-2">A modular combat system featuring melee and ranged attacks, stamina management, cooldowns, hit detection, and networked animations.</p>
+            <pre class="code-block text-sm"><code>-- CombatSystem.lua (Server Script)
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+
+local CombatEvent = Instance.new("RemoteEvent")
+CombatEvent.Name = "CombatEvent"
+CombatEvent.Parent = ReplicatedStorage
+
+-- Configuration
+local CONFIG = {
+    MELEE_RANGE = 5,
+    MELEE_DAMAGE = 15,
+    RANGED_DAMAGE = 10,
+    STAMINA_COST = 20,
+    COOLDOWN = 1.5,
+    ANIMATIONS = {
+        MELEE = "rbxassetid://123456789", -- Replace with actual ID
+        RANGED = "rbxassetid://987654321" -- Replace with actual ID
+    }
+}
+
+-- Player state management
+local playerStates = {}
+local function getPlayerState(player)
+    if not playerStates[player] then
+        playerStates[player] = {
+            lastAttack = 0,
+            stamina = 100
+        }
+    end
+    return playerStates[player]
+end
+
+-- Cleanup on player leave
+Players.PlayerRemoving:Connect(function(player)
+    playerStates[player] = nil
+end)
+
+local function validateAttack(player, action, target)
+    local character = player.Character
+    if not character or not character:FindFirstChildOfClass("Humanoid") or character.Humanoid.Health <= 0 then
+        return false, "Invalid character"
+    end
+
+    local state = getPlayerState(player)
+    if tick() - state.lastAttack < CONFIG.COOLDOWN then
+        return false, "Attack on cooldown"
+    end
+    if state.stamina < CONFIG.STAMINA_COST then
+        return false, "Insufficient stamina"
+    end
+
+    if action == "Melee" and target then
+        local targetHumanoid = target:FindFirstChildOfClass("Humanoid")
+        if not targetHumanoid or targetHumanoid.Health <= 0 then
+            return false, "Invalid target"
+        end
+        local distance = (character.HumanoidRootPart.Position - target.HumanoidRootPart.Position).Magnitude
+        if distance > CONFIG.MELEE_RANGE then
+            return false, "Target out of range"
+        end
+    end
+
+    return true
+end
+
+local function handleCombat(player, action, target)
+    local success, errorMsg = validateAttack(player, action, target)
+    if not success then
+        CombatEvent:FireClient(player, "Error", errorMsg)
+        return
+    end
+
+    local character = player.Character
+    local humanoid = character.Humanoid
+    local state = getPlayerState(player)
+
+    -- Update state
+    state.lastAttack = tick()
+    state.stamina = math.max(0, state.stamina - CONFIG.STAMINA_COST)
+
+    -- Play animation
+    local animation = Instance.new("Animation")
+    animation.AnimationId = CONFIG.ANIMATIONS[action:upper()] or CONFIG.ANIMATIONS.MELEE
+    local animator = humanoid:FindFirstChildOfClass("Animator")
+    animator:LoadAnimation(animation):Play()
+
+    if action == "Melee" and target then
+        local targetHumanoid = target:FindFirstChildOfClass("Humanoid")
+        targetHumanoid:TakeDamage(CONFIG.MELEE_DAMAGE)
+        CombatEvent:FireClient(player, "Hit", "Melee hit!")
+    elseif action == "Ranged" then
+        -- Simulate projectile (simplified)
+        local ray = Ray.new(character.HumanoidRootPart.Position, character.HumanoidRootPart.CFrame.LookVector * 50)
+        local hit, position = workspace:FindPartOnRayWithIgnoreList(ray, {character})
+        if hit and hit.Parent:FindFirstChildOfClass("Humanoid") then
+            hit.Parent.Humanoid:TakeDamage(CONFIG.RANGED_DAMAGE)
+            CombatEvent:FireClient(player, "Hit", "Ranged hit!")
+        end
+    end
+
+    -- Stamina regeneration
+    RunService.Heartbeat:Connect(function()
+        if state.stamina < 100 then
+            state.stamina = math.min(100, state.stamina + 0.5)
+        end
+    end)
+end
+
+CombatEvent.OnServerEvent:Connect(handleCombat)
+</code></pre>
+
+            <h3 class="text-2xl font-medium mb-2 mt-6">Fishing System</h3>
+            <p class="mb-2">An advanced fishing system with bait types, weather effects, catch rarities, and a robust inventory system.</p>
+            <pre class="code-block text-sm"><code>-- FishingSystem.lua (Server Script)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+local FishingEvent = Instance.new("RemoteEvent")
+FishingEvent.Name = "FishingEvent"
+FishingEvent.Parent = ReplicatedStorage
+
+-- Configuration
+local CONFIG = {
+    CAST_TIME = 3,
+    BAIT_TYPES = {
+        Standard = {Common = 0.7, Rare = 0.25, Legendary = 0.05},
+        Premium = {Common = 0.5, Rare = 0.35, Legendary = 0.15}
+    },
+    WEATHER_MODIFIERS = {
+        Clear = 1,
+        Rain = 1.2,
+        Storm = 1.5
+    },
+    FISH_TYPES = {
+        Common = {"Trout", "Bass"},
+        Rare = {"Salmon", "Tuna"},
+        Legendary = {"Golden Marlin", "Mythic Carp"}
+    }
+}
+
+-- Player fishing state
+local playerFishingStates = {}
+local function getFishingState(player)
+    if not playerFishingStates[player] then
+        playerFishingStates[player] = {
+            isCasting = false,
+            castStart = 0,
+            bait = "Standard"
+        }
+    end
+    return playerFishingStates[player]
+end
+
+Players.PlayerRemoving:Connect(function(player)
+    playerFishingStates[player] = nil
+end)
+
+local function getFish(baitType, weather)
+    local chances = CONFIG.BAIT_TYPES[baitType]
+    local modifier = CONFIG.WEATHER_MODIFIERS[weather] or 1
+    local rand = math.random() / modifier
+    local cumulative = 0
+    for rarity, chance in pairs(chances) do
+        cumulative += chance
+        if rand <= cumulative then
+            local fishList = CONFIG.FISH_TYPES[rarity]
+            return fishList[math.random(1, #fishList)], rarity
+        end
+    end
+    return CONFIG.FISH_TYPES.Common[1], "Common"
+end
+
+local function handleFishing(player, action)
+    local state = getFishingState(player)
+    local character = player.Character
+    if not character or character.Humanoid.Health <= 0 then
+        return
+    end
+
+    if action == "Cast" and not state.isCasting then
+        state.isCasting = true
+        state.castStart = tick()
+        FishingEvent:FireClient(player, "Casting", "Casting...")
+    elseif action == "Reel" and state.isCasting then
+        if tick() - state.castStart < CONFIG.CAST_TIME then
+            FishingEvent:FireClient(player, "Error", "Not ready to reel!")
+            return
+        end
+        state.isCasting = false
+        local weather = workspace:FindFirstChild("Weather") and workspace.Weather.Value or "Clear"
+        local fish, rarity = getFish(state.bait, weather)
+        local inventory = player:FindFirstChild("Inventory") or Instance.new("Folder", player)
+        inventory.Name = "Inventory"
+        local fishItem = Instance.new("StringValue", inventory)
+        fishItem.Name = fish
+        fishItem.Value = rarity
+        FishingEvent:FireClient(player, "Caught", {fish = fish, rarity = rarity})
+    end
+end
+
+FishingEvent.OnServerEvent:Connect(handleFishing)
+</code></pre>
+
+            <h3 class="text-2xl font-medium mb-2 mt-6">Dynamic Building System</h3>
+            <p class="mb-2">A comprehensive building system with grid snapping, collision detection, and permission-based editing.</p>
+            <pre class="code-block text-sm"><code>-- BuildingSystem.lua (Server Script)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+local BuildEvent = Instance.new("RemoteEvent")
+BuildEvent.Name = "BuildEvent"
+BuildEvent.Parent = ReplicatedStorage
+
+-- Configuration
+local CONFIG = {
+    GRID_SIZE = 4,
+    MAX_BUILD_DISTANCE = 50,
+    ALLOWED_MODELS = {"House", "Tower", "Bridge"},
+    MAX_STRUCTURES_PER_PLAYER = 10
+}
+
+-- Building state
+local playerStructures = {}
+local function getPlayerStructures(player)
+    if not playerStructures[player] then
+        playerStructures[player] = {}
+    end
+    return playerStructures[player]
+end
+
+Players.PlayerRemoving:Connect(function(player)
+    playerStructures[player] = nil
+end)
+
+local function isValidPosition(position, model)
+    local parts = model:GetDescendants()
+    for _, part in ipairs(parts) do
+        if part:IsA("BasePart") then
+            local region = Region3.new(part.Position - part.Size/2, part.Position + part.Size/2)
+            local overlapping = workspace:FindPartsInRegion3WithIgnoreList(region, {model}, 1)
+            if #overlapping > 0 then
+                return false
+            end
+        end
+    end
+    return true
+end
+
+local function placeStructure(player, modelName, position, rotation)
+    if not table.find(CONFIG.ALLOWED_MODELS, modelName) then
+        BuildEvent:FireClient(player, "Error", "Invalid model")
+        return
+    end
+
+    local character = player.Character
+    if not character or (character.HumanoidRootPart.Position - position).Magnitude > CONFIG.MAX_BUILD_DISTANCE then
+        BuildEvent:FireClient(player, "Error", "Too far to build")
+        return
+    end
+
+    local structures = getPlayerStructures(player)
+    if #structures >= CONFIG.MAX_STRUCTURES_PER_PLAYER then
+        BuildEvent:FireClient(player, "Error", "Structure limit reached")
+        return
+    end
+
+    local model = game.ServerStorage.Structures:FindFirstChild(modelName)
+    if not model then
+        BuildEvent:FireClient(player, "Error", "Model not found")
+        return
+    end
+
+    -- Snap to grid
+    local snappedPosition = Vector3.new(
+        math.floor(position.X / CONFIG.GRID_SIZE + 0.5) * CONFIG.GRID_SIZE,
+        position.Y,
+        math.floor(position.Z / CONFIG.GRID_SIZE + 0.5) * CONFIG.GRID_SIZE
+    )
+
+    local clone = model:Clone()
+    clone:SetPrimaryPartCFrame(CFrame.new(snappedPosition) * CFrame.Angles(0, math.rad(rotation), 0))
+
+    if not isValidPosition(snappedPosition, clone) then
+        BuildEvent:FireClient(player, "Error", "Invalid placement position")
+        clone:Destroy()
+        return
+    end
+
+    clone.Parent = workspace
+    table.insert(structures, clone)
+
+    local owner = Instance.new("StringValue", clone)
+    owner.Name = "Owner"
+    owner.Value = player.Name
+
+    BuildEvent:FireClient(player, "Success", "Structure placed!")
+end
+
+BuildEvent.OnServerEvent:Connect(placeStructure)
+</code></pre>
+        </section>
+
+        <section class="section text-center">
+            <h2 class="text-3xl font-semibold mb-4">Get in Touch</h2>
+            <p class="text-lg mb-4">I'm excited to work on new Roblox projects! Contact me via Roblox or Discord.</p>
+            <p class="text-lg">Roblox Username: <span class="font-bold">RealAhhjit27</span></p>
+            <a href="https://www.roblox.com/users/RealAhhjit27" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-4">
+                Visit My Roblox Profile
+            </a>
+        </section>
+    </main>
+
+    <footer class="mt-8 text-center">
+        <p class="text-lg">© 2025 RealAhhjit27. All rights reserved.</p>
+    </footer>
+</body>
+</html>
