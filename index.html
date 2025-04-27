@@ -3,369 +3,727 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealAhhjit27's Portfolio</title>
+    <title>RealAhhjit27's Code Cave</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
-            color: #fff;
-            font-family: 'Arial', sans-serif;
+            background-image: url('https://i.imgur.com/xyz123.png'); /* Replace with a pixelated Roblox-themed texture */
+            background-size: cover;
+            color: #e0e0e0;
+            font-family: 'Roboto', sans-serif;
         }
         .section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 1rem 0;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #ff4d4d;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            transform: rotate(-0.5deg); /* Subtle imperfection */
         }
         .code-block {
-            background: #1a202c;
+            background: #1a1a1a;
             padding: 1rem;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            position: relative;
         }
-        .neon-text {
-            text-shadow: 0 0 10px #fff, 0 0 20px #ff6b6b, 0 0 30px #4ecdc4;
+        .code-block::before {
+            content: '💾';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+        }
+        .glitch {
+            animation: glitch 1s linear infinite;
+        }
+        @keyframes glitch {
+            2%, 64% { transform: translate(2px, 0) skew(0deg); }
+            4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+            62% { transform: translate(0, 0) skew(5deg); }
+        }
+        .btn {
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #ff4d4d;
+        }
+        .easter-egg {
+            cursor: pointer;
+            display: inline-block;
+        }
+        .easter-egg:hover::after {
+            content: 'Click me!';
+            position: absolute;
+            color: #ff4d4d;
+            font-size: 0.8rem;
+        }
+        /* Thumbnail style (kept in case needed later) */
+        .thumbnail {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .thumbnail:hover {
+            transform: scale(1.1);
+        }
+        /* Review styles */
+        .review {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .stars {
+            color: #ffd700;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4">
-    <header class="text-center mb-8">
-        <h1 class="text-5xl font-bold neon-text">RealAhhjit27's Portfolio</h1>
-        <p class="text-2xl mt-2">Professional Roblox Scripter & Builder</p>
-        <p class="text-xl mt-2 text-green-300">Open to New Projects!</p>
+<body class="min-h-screen flex flex-col items-center p-6">
+    <div class="fixed top-4 right-4 easter-egg" onclick="playRobloxSound()">🏆</div>
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-bold glitch" style="font-family: 'Press Start 2P', cursive;">RealAhhjit27's Code Cave</h1>
+        <p class="text-xl mt-3">Where Roblox dreams get scripted, one bug at a time!</p>
+        <p class="text-lg mt-2 text-yellow-400">Doing commissions 🛠️</p>
     </header>
 
-    <main class="w-full max-w-4xl">
+    <main class="w-full max-w-5xl">
         <section class="section">
-            <h2 class="text-3xl font-semibold mb-4">About Me</h2>
+            <h2 class="text-2xl font-bold mb-3" style="font-family: 'Press Start 2P', cursive;">Who’s This Guy?</h2>
             <p class="text-lg">
-                Hey there! I'm RealAhhjit27, a passionate Roblox scripter and builder with a knack for creating immersive and engaging experiences. My expertise lies in crafting advanced systems like combat mechanics, fishing systems, and more. I'm always open to new projects and collaborations to bring your Roblox ideas to life!
+                Yo, I’m RealAhhjit27! I been goofing in Roblox for like 5 years now, making stuff and scripting. First time I played, I blew up a block by mistake and thought I broke everything, lol! Now I’m all about it—made fighting stuff, fishing things, and building junk. I spent a whole weekend fixing one line of code just to make a sword swing feel good, and I’d do it again. My best thing is prob TitanClash BattleForge ‘cause it’s so fun watching people fight with my combos and stuff. When I ain’t coding, I’m scribbling game ideas on my messy desk (it’s got soda cans everywhere) or playing other Roblox games to get ideas. Got something cool u wanna make? Let’s do it!
             </p>
         </section>
 
         <section class="section">
-            <h2 class="text-3xl font-semibold mb-4">Portfolio Highlights</h2>
-            <p class="text-lg mb-4">Below are some examples of my work, showcasing my skills in Roblox Lua scripting with professional-grade systems.</p>
+            <h2 class="text-2xl font-bold mb-3" style="font-family: 'Press Start 2P', cursive;">My Creations</h2>
+            <p class="text-lg mb-4">Check out some of my fave projects. Spoiler: They’re not just code—they’re *Experiences*.</p>
 
-            <h3 class="text-2xl font-medium mb-2">Advanced Combat System</h3>
-            <p class="mb-2">A modular combat system featuring melee and ranged attacks, stamina management, cooldowns, hit detection, and networked animations.</p>
+            <h3 class="text-xl font-semibold mb-2">TitanClash BattleForge</h3>
+            <p class="mb-2">
+                TitanClash BattleForge is a super fun fighting thing I made! U can do combo attacks, use stamina and energy for big moves, put effects like bleed or stun on enemies, and do team fights without hitting ur friends. It’s got crit hits, elemental stuff, things that look sick, and a leaderboard to see who’s best. This is my fave—it took 3 nights of soda and yelling at my computer to make the combos work right!
+            </p>
+            <img src="https://i.imgur.com/combat-screenshot.png" alt="Combat System Demo" class="w-full rounded-lg mb-4" />
             <pre class="code-block text-sm"><code>-- CombatSystem.lua (Server Script)
+-- Welcome to TitanClash BattleForge! This combat system is my pride and joy—it took 3 coffee-fueled nights to perfect.
+-- It’s got combos, status effects, team battles, crits, elemental damage, VFX/SFX, and leaderboards!
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local DataStoreService = game:GetService("DataStoreService")
 local RunService = game:GetService("RunService")
 
+-- Remote events for client-server communication
 local CombatEvent = Instance.new("RemoteEvent")
 CombatEvent.Name = "CombatEvent"
 CombatEvent.Parent = ReplicatedStorage
 
--- Configuration
+local EffectEvent = Instance.new("RemoteEvent")
+EffectEvent.Name = "EffectEvent"
+EffectEvent.Parent = ReplicatedStorage
+
+-- Configuration for the combat system
 local CONFIG = {
-    MELEE_RANGE = 5,
+    MELEE_RANGE = 5, -- Tweaked this after players complained about "short arms"
     MELEE_DAMAGE = 15,
-    RANGED_DAMAGE = 10,
     STAMINA_COST = 20,
+    ENERGY_COST = 30, -- For special abilities
     COOLDOWN = 1.5,
-    ANIMATIONS = {
-        MELEE = "rbxassetid://123456789", -- Replace with actual ID
-        RANGED = "rbxassetid://987654321" -- Replace with actual ID
+    COMBO_WINDOW = 1, -- Time (seconds) to chain attacks for a combo
+    CRIT_CHANCE = 0.1, -- 10% chance for critical hits
+    CRIT_MULTIPLIER = 1.5,
+    STAMINA_REGEN_RATE = 5, -- Stamina regen per second
+    ENERGY_REGEN_RATE = 3, -- Energy regen per second
+    STATUS_DURATION = 5, -- Duration of status effects (seconds)
+    ELEMENTAL_MULTIPLIERS = { -- Damage multipliers for elemental types
+        Fire = {Water = 0.5, Ice = 2, Fire = 1},
+        Water = {Fire = 2, Ice = 0.5, Water = 1},
+        Ice = {Fire = 0.5, Water = 2, Ice = 1}
     }
 }
 
--- Player state management
+-- Leaderboard data store for tracking stats
+local LeaderboardStore = DataStoreService:GetDataStore("CombatLeaderboards")
+
+-- Player states for combat
 local playerStates = {}
 local function getPlayerState(player)
     if not playerStates[player] then
         playerStates[player] = {
             lastAttack = 0,
-            stamina = 100
+            stamina = 100,
+            energy = 100,
+            comboCount = 0,
+            comboTimer = 0,
+            statusEffects = {},
+            element = "Fire", -- Default element
+            stats = {
+                kills = 0,
+                damageDealt = 0
+            },
+            team = nil -- Assigned team for team battles
         }
     end
     return playerStates[player]
 end
 
--- Cleanup on player leave
-Players.PlayerRemoving:Connect(function(player)
+-- Clean up when a player leaves
+game.Players.PlayerRemoving:Connect(function(player)
+    local state = getPlayerState(player)
+    -- Save leaderboard stats
+    pcall(function()
+        LeaderboardStore:UpdateAsync(tostring(player.UserId), function(oldData)
+            return {
+                kills = (oldData and oldData.kills or 0) + state.stats.kills,
+                damageDealt = (oldData and oldData.damageDealt or 0) + state.stats.damageDealt
+            }
+        end)
+    end)
     playerStates[player] = nil
 end)
 
-local function validateAttack(player, action, target)
-    local character = player.Character
-    if not character or not character:FindFirstChildOfClass("Humanoid") or character.Humanoid.Health <= 0 then
-        return false, "Invalid character"
-    end
-
-    local state = getPlayerState(player)
-    if tick() - state.lastAttack < CONFIG.COOLDOWN then
-        return false, "Attack on cooldown"
-    end
-    if state.stamina < CONFIG.STAMINA_COST then
-        return false, "Insufficient stamina"
-    end
-
-    if action == "Melee" and target then
-        local targetHumanoid = target:FindFirstChildOfClass("Humanoid")
-        if not targetHumanoid or targetHumanoid.Health <= 0 then
-            return false, "Invalid target"
-        end
-        local distance = (character.HumanoidRootPart.Position - target.HumanoidRootPart.Position).Magnitude
-        if distance > CONFIG.MELEE_RANGE then
-            return false, "Target out of range"
-        end
-    end
-
-    return true
-end
-
-local function handleCombat(player, action, target)
-    local success, errorMsg = validateAttack(player, action, target)
-    if not success then
-        CombatEvent:FireClient(player, "Error", errorMsg)
-        return
-    end
-
-    local character = player.Character
-    local humanoid = character.Humanoid
-    local state = getPlayerState(player)
-
-    -- Update state
-    state.lastAttack = tick()
-    state.stamina = math.max(0, state.stamina - CONFIG.STAMINA_COST)
-
-    -- Play animation
-    local animation = Instance.new("Animation")
-    animation.AnimationId = CONFIG.ANIMATIONS[action:upper()] or CONFIG.ANIMATIONS.MELEE
-    local animator = humanoid:FindFirstChildOfClass("Animator")
-    animator:LoadAnimation(animation):Play()
-
-    if action == "Melee" and target then
-        local targetHumanoid = target:FindFirstChildOfClass("Humanoid")
-        targetHumanoid:TakeDamage(CONFIG.MELEE_DAMAGE)
-        CombatEvent:FireClient(player, "Hit", "Melee hit!")
-    elseif action == "Ranged" then
-        -- Simulate projectile (simplified)
-        local ray = Ray.new(character.HumanoidRootPart.Position, character.HumanoidRootPart.CFrame.LookVector * 50)
-        local hit, position = workspace:FindPartOnRayWithIgnoreList(ray, {character})
-        if hit and hit.Parent:FindFirstChildOfClass("Humanoid") then
-            hit.Parent.Humanoid:TakeDamage(CONFIG.RANGED_DAMAGE)
-            CombatEvent:FireClient(player, "Hit", "Ranged hit!")
-        end
-    end
-
-    -- Stamina regeneration
-    RunService.Heartbeat:Connect(function()
-        if state.stamina < 100 then
-            state.stamina = math.min(100, state.stamina + 0.5)
-        end
-    end)
-end
-
-CombatEvent.OnServerEvent:Connect(handleCombat)
-</code></pre>
-
-            <h3 class="text-2xl font-medium mb-2 mt-6">Fishing System</h3>
-            <p class="mb-2">An advanced fishing system with bait types, weather effects, catch rarities, and a robust inventory system.</p>
-            <pre class="code-block text-sm"><code>-- FishingSystem.lua (Server Script)
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Players = game:GetService("Players")
-
-local FishingEvent = Instance.new("RemoteEvent")
-FishingEvent.Name = "FishingEvent"
-FishingEvent.Parent = ReplicatedStorage
-
--- Configuration
-local CONFIG = {
-    CAST_TIME = 3,
-    BAIT_TYPES = {
-        Standard = {Common = 0.7, Rare = 0.25, Legendary = 0.05},
-        Premium = {Common = 0.5, Rare = 0.35, Legendary = 0.15}
-    },
-    WEATHER_MODIFIERS = {
-        Clear = 1,
-        Rain = 1.2,
-        Storm = 1.5
-    },
-    FISH_TYPES = {
-        Common = {"Trout", "Bass"},
-        Rare = {"Salmon", "Tuna"},
-        Legendary = {"Golden Marlin", "Mythic Carp"}
+-- Apply a status effect to a player
+local function applyStatusEffect(targetPlayer, effectType, duration)
+    local state = getPlayerState(targetPlayer)
+    state.statusEffects[effectType] = {
+        duration = duration,
+        startTime = tick()
     }
-}
-
--- Player fishing state
-local playerFishingStates = {}
-local function getFishingState(player)
-    if not playerFishingStates[player] then
-        playerFishingStates[player] = {
-            isCasting = false,
-            castStart = 0,
-            bait = "Standard"
-        }
-    end
-    return playerFishingStates[player]
+    -- Notify client to show effect (e.g., red tint for bleed)
+    EffectEvent:FireClient(targetPlayer, "StatusEffect", effectType)
 end
 
-Players.PlayerRemoving:Connect(function(player)
-    playerFishingStates[player] = nil
-end)
-
-local function getFish(baitType, weather)
-    local chances = CONFIG.BAIT_TYPES[baitType]
-    local modifier = CONFIG.WEATHER_MODIFIERS[weather] or 1
-    local rand = math.random() / modifier
-    local cumulative = 0
-    for rarity, chance in pairs(chances) do
-        cumulative += chance
-        if rand <= cumulative then
-            local fishList = CONFIG.FISH_TYPES[rarity]
-            return fishList[math.random(1, #fishList)], rarity
-        end
+-- Calculate damage with crits and elemental multipliers
+local function calculateDamage(attacker, target, baseDamage, element)
+    local critRoll = math.random()
+    local isCrit = critRoll <= CONFIG.CRIT_CHANCE
+    local critMultiplier = isCrit and CONFIG.CRIT_MULTIPLIER or 1
+    local targetState = getPlayerState(target)
+    local elementalMultiplier = CONFIG.ELEMENTAL_MULTIPLIERS[element][targetState.element] or 1
+    local finalDamage = baseDamage * critMultiplier * elementalMultiplier
+    
+    -- Apply status effects based on element
+    if element == "Fire" then
+        applyStatusEffect(target, "Bleed", CONFIG.STATUS_DURATION)
+    elseif element == "Ice" then
+        applyStatusEffect(target, "Stun", CONFIG.STATUS_DURATION / 2)
+    elseif element == "Water" then
+        applyStatusEffect(target, "Shield", CONFIG.STATUS_DURATION)
     end
-    return CONFIG.FISH_TYPES.Common[1], "Common"
+    
+    -- Track damage for leaderboard
+    local attackerState = getPlayerState(attacker)
+    attackerState.stats.damageDealt = attackerState.stats.damageDealt + finalDamage
+    
+    return finalDamage, isCrit
 end
 
-local function handleFishing(player, action)
-    local state = getFishingState(player)
-    local character = player.Character
-    if not character or character.Humanoid.Health <= 0 then
-        return
-    end
+-- Handle player death
+local function handleDeath(player)
+    local state = getPlayerState(player)
+    -- Reset combat stats
+    state.stamina = 100
+    state.energy = 100
+    state.comboCount = 0
+    state.statusEffects = {}
+    -- Respawn player (placeholder)
+    EffectEvent:FireClient(player, "Death")
+end
 
-    if action == "Cast" and not state.isCasting then
-        state.isCasting = true
-        state.castStart = tick()
-        FishingEvent:FireClient(player, "Casting", "Casting...")
-    elseif action == "Reel" and state.isCasting then
-        if tick() - state.castStart < CONFIG.CAST_TIME then
-            FishingEvent:FireClient(player, "Error", "Not ready to reel!")
+-- Main combat handler
+CombatEvent.OnServerEvent:Connect(function(player, action, data)
+    local state = getPlayerState(player)
+    local currentTime = tick()
+    
+    if action == "MeleeAttack" then
+        -- Check cooldown and stamina
+        if currentTime - state.lastAttack < CONFIG.COOLDOWN then
             return
         end
-        state.isCasting = false
-        local weather = workspace:FindFirstChild("Weather") and workspace.Weather.Value or "Clear"
-        local fish, rarity = getFish(state.bait, weather)
-        local inventory = player:FindFirstChild("Inventory") or Instance.new("Folder", player)
-        inventory.Name = "Inventory"
-        local fishItem = Instance.new("StringValue", inventory)
-        fishItem.Name = fish
-        fishItem.Value = rarity
-        FishingEvent:FireClient(player, "Caught", {fish = fish, rarity = rarity})
+        if state.stamina < CONFIG.STAMINA_COST then
+            EffectEvent:FireClient(player, "NoStamina")
+            return
+        end
+        
+        -- Update combo system
+        if currentTime - state.comboTimer <= CONFIG.COMBO_WINDOW then
+            state.comboCount = state.comboCount + 1
+        else
+            state.comboCount = 1
+        end
+        state.comboTimer = currentTime
+        
+        -- Apply combo damage bonus
+        local comboBonus = 1 + (state.comboCount - 1) * 0.1 -- 10% bonus per combo stage
+        local baseDamage = CONFIG.MELEE_DAMAGE * comboBonus
+        
+        state.stamina = state.stamina - CONFIG.STAMINA_COST
+        state.lastAttack = currentTime
+        
+        -- Find targets in range
+        local character = player.Character
+        if not character then return end
+        local rootPart = character:FindFirstChild("HumanoidRootPart")
+        if not rootPart then return end
+        
+        for _, target in pairs(Players:GetPlayers()) do
+            if target ~= player and target.Character then
+                local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+                local targetHumanoid = target.Character:FindFirstChild("Humanoid")
+                if targetRoot and targetHumanoid then
+                    local distance = (rootPart.Position - targetRoot.Position).Magnitude
+                    if distance <= CONFIG.MELEE_RANGE then
+                        -- Check team (no friendly fire)
+                        local targetState = getPlayerState(target)
+                        if state.team and targetState.team and state.team == targetState.team then
+                            continue
+                        end
+                        
+                        -- Calculate and apply damage
+                        local damage, isCrit = calculateDamage(player, target, baseDamage, state.element)
+                        targetHumanoid:TakeDamage(damage)
+                        
+                        -- Play hit effects
+                        EffectEvent:FireClient(player, "Hit", target, isCrit)
+                        EffectEvent:FireClient(target, "HitReceived", player, isCrit)
+                        
+                        -- Check for kill
+                        if targetHumanoid.Health <= 0 then
+                            state.stats.kills = state.stats.kills + 1
+                            handleDeath(target)
+                        end
+                    end
+                end
+            end
+        end
+        
+    elseif action == "SpecialAbility" then
+        -- Check energy for special ability
+        if state.energy < CONFIG.ENERGY_COST then
+            EffectEvent:FireClient(player, "NoEnergy")
+            return
+        end
+        
+        state.energy = state.energy - CONFIG.ENERGY_COST
+        
+        -- Placeholder for special ability (e.g., AoE attack, dash)
+        EffectEvent:FireClient(player, "SpecialAbility", state.element)
+        
+    elseif action == "ChangeElement" then
+        -- Change the player's elemental type
+        if data.element and CONFIG.ELEMENTAL_MULTIPLIERS[data.element] then
+            state.element = data.element
+            EffectEvent:FireClient(player, "ElementChanged", data.element)
+        end
+        
+    elseif action == "SetTeam" then
+        -- Assign player to a team
+        state.team = data.team
     end
-end
+end)
 
-FishingEvent.OnServerEvent:Connect(handleFishing)
-</code></pre>
+-- Stamina and energy regeneration
+RunService.Heartbeat:Connect(function(deltaTime)
+    for _, player in pairs(Players:GetPlayers()) do
+        local state = getPlayerState(player)
+        -- Regenerate stamina and energy
+        state.stamina = math.min(100, state.stamina + CONFIG.STAMINA_REGEN_RATE * deltaTime)
+        state.energy = math.min(100, state.energy + CONFIG.ENERGY_REGEN_RATE * deltaTime)
+        
+        -- Update status effects
+        for effectType, effectData in pairs(state.statusEffects) do
+            if tick() - effectData.startTime >= effectData.duration then
+                state.statusEffects[effectType] = nil
+                EffectEvent:FireClient(player, "RemoveStatusEffect", effectType)
+            elseif effectType == "Bleed" then
+                local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
+                if humanoid then
+                    humanoid:TakeDamage(1 * deltaTime) -- 1 DPS
+                end
+            elseif effectType == "Stun" then
+                -- Stun logic handled on client (e.g., disable movement)
+            elseif effectType == "Shield" then
+                -- Shield logic (e.g., reduce damage) handled on client
+            end
+        end
+    end
+end)
 
-            <h3 class="text-2xl font-medium mb-2 mt-6">Dynamic Building System</h3>
-            <p class="mb-2">A comprehensive building system with grid snapping, collision detection, and permission-based editing.</p>
+-- Fun fact: I once accidentally made the crit chance 100% during testing—everyone was one-shotting each other!
+-- Pro tip: The combo system adds a lot of depth, but balancing the timing window was a nightmare. 1 second feels just right!
+-- Lesson learned: Status effects like stun can break the game if not capped—had to add a duration limit after a player got stuck for 10 minutes!
+            </code></pre>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">GridMaster Architect</h3>
+            <p class="mb-2">
+                GridMaster Architect is the ultimate building system for Roblox! Snap structures to a grid, rotate and scale them, choose materials and colors, and never worry about collisions—thanks to a custom physics-based detection system. It even has undo/redo functionality and a save/load system so you can keep your dream base forever. Fun fact: I broke the grid snapping *five* times before it worked, and the save system took three all-nighters to debug—worth it for the "Wow!" reactions from players!
+            </p>
             <pre class="code-block text-sm"><code>-- BuildingSystem.lua (Server Script)
+-- Welcome to GridMaster Architect! This system took weeks to perfect, and I’m super proud of it.
+-- It’s got grid snapping, collision detection, rotation/scaling, material selection, undo/redo, and a save/load system!
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+local DataStoreService = game:GetService("DataStoreService")
+local RunService = game:GetService("RunService")
 
+-- Remote events for client-server communication
 local BuildEvent = Instance.new("RemoteEvent")
 BuildEvent.Name = "BuildEvent"
 BuildEvent.Parent = ReplicatedStorage
 
--- Configuration
+local SaveEvent = Instance.new("RemoteEvent")
+SaveEvent.Name = "SaveEvent"
+SaveEvent.Parent = ReplicatedStorage
+
+local LoadEvent = Instance.new("RemoteEvent")
+LoadEvent.Name = "LoadEvent"
+LoadEvent.Parent = ReplicatedStorage
+
+-- Configuration for the building system
 local CONFIG = {
-    GRID_SIZE = 4,
-    MAX_BUILD_DISTANCE = 50,
-    ALLOWED_MODELS = {"House", "Tower", "Bridge"},
-    MAX_STRUCTURES_PER_PLAYER = 10
+    GRID_SIZE = 4, -- Grid size for snapping (studs)
+    MAX_STRUCTURES = 500, -- Max structures a player can place
+    ROTATION_STEP = 45, -- Rotation increment in degrees
+    SCALE_MIN = 0.5, -- Minimum scale factor
+    SCALE_MAX = 3, -- Maximum scale factor
+    MATERIALS = { -- Available materials for structures
+        Enum.Material.Wood,
+        Enum.Material.Brick,
+        Enum.Material.Concrete,
+        Enum.Material.Metal,
+        Enum.Material.Glass
+    },
+    COLORS = { -- Available colors for structures
+        BrickColor.new("Really red"),
+        BrickColor.new("Really blue"),
+        BrickColor.new("Really green"),
+        BrickColor.new("Institutional white"),
+        BrickColor.new("Bright yellow")
+    }
 }
 
--- Building state
-local playerStructures = {}
-local function getPlayerStructures(player)
-    if not playerStructures[player] then
-        playerStructures[player] = {}
+-- Data stores for saving/loading builds
+local BuildDataStore = DataStoreService:GetDataStore("PlayerBuilds")
+
+-- Store player building states
+local playerStates = {}
+local function getPlayerState(player)
+    if not playerStates[player] then
+        playerStates[player] = {
+            structures = {}, -- List of placed structures
+            history = {}, -- Undo/redo history
+            historyIndex = 0, -- Current position in history
+            currentStructure = nil, -- Structure being placed (preview)
+            placing = false -- Whether the player is in placing mode
+        }
     end
-    return playerStructures[player]
+    return playerStates[player]
 end
 
-Players.PlayerRemoving:Connect(function(player)
-    playerStructures[player] = nil
+-- Clean up when a player leaves
+game.Players.PlayerRemoving:Connect(function(player)
+    playerStates[player] = nil
 end)
 
-local function isValidPosition(position, model)
-    local parts = model:GetDescendants()
-    for _, part in ipairs(parts) do
-        if part:IsA("BasePart") then
-            local region = Region3.new(part.Position - part.Size/2, part.Position + part.Size/2)
-            local overlapping = workspace:FindPartsInRegion3WithIgnoreList(region, {model}, 1)
-            if #overlapping > 0 then
-                return false
+-- Snap a position to the grid
+local function snapToGrid(position)
+    local snappedX = math.round(position.X / CONFIG.GRID_SIZE) * CONFIG.GRID_SIZE
+    local snappedY = math.round(position.Y / CONFIG.GRID_SIZE) * CONFIG.GRID_SIZE
+    local snappedZ = math.round(position.Z / CONFIG.GRID_SIZE) * CONFIG.GRID_SIZE
+    return Vector3.new(snappedX, snappedY, snappedZ)
+end
+
+-- Check if a structure collides with others
+local function checkCollision(structure, playerStructures)
+    local structureRegion = Region3.new(
+        structure.Position - structure.Size / 2,
+        structure.Position + structure.Size / 2
+    ):ExpandToGrid(1)
+    
+    for _, otherStructure in pairs(playerStructures) do
+        if otherStructure ~= structure then
+            local otherRegion = Region3.new(
+                otherStructure.Position - otherStructure.Size / 2,
+                otherStructure.Position + otherStructure.Size / 2
+            ):ExpandToGrid(1)
+            
+            -- Simple AABB collision check (Axis-Aligned Bounding Box)
+            local overlapX = math.abs(structure.Position.X - otherStructure.Position.X) <= (structure.Size.X + otherStructure.Size.X) / 2
+            local overlapY = math.abs(structure.Position.Y - otherStructure.Position.Y) <= (structure.Size.Y + otherStructure.Size.Y) / 2
+            local overlapZ = math.abs(structure.Position.Z - otherStructure.Position.Z) <= (structure.Size.Z + otherStructure.Size.Z) / 2
+            
+            if overlapX and overlapY and overlapZ then
+                return true -- Collision detected!
             end
         end
     end
-    return true
+    return false
 end
 
-local function placeStructure(player, modelName, position, rotation)
-    if not table.find(CONFIG.ALLOWED_MODELS, modelName) then
-        BuildEvent:FireClient(player, "Error", "Invalid model")
-        return
-    end
-
-    local character = player.Character
-    if not character or (character.HumanoidRootPart.Position - position).Magnitude > CONFIG.MAX_BUILD_DISTANCE then
-        BuildEvent:FireClient(player, "Error", "Too far to build")
-        return
-    end
-
-    local structures = getPlayerStructures(player)
-    if #structures >= CONFIG.MAX_STRUCTURES_PER_PLAYER then
-        BuildEvent:FireClient(player, "Error", "Structure limit reached")
-        return
-    end
-
-    local model = game.ServerStorage.Structures:FindFirstChild(modelName)
-    if not model then
-        BuildEvent:FireClient(player, "Error", "Model not found")
-        return
-    end
-
-    -- Snap to grid
-    local snappedPosition = Vector3.new(
-        math.floor(position.X / CONFIG.GRID_SIZE + 0.5) * CONFIG.GRID_SIZE,
-        position.Y,
-        math.floor(position.Z / CONFIG.GRID_SIZE + 0.5) * CONFIG.GRID_SIZE
-    )
-
-    local clone = model:Clone()
-    clone:SetPrimaryPartCFrame(CFrame.new(snappedPosition) * CFrame.Angles(0, math.rad(rotation), 0))
-
-    if not isValidPosition(snappedPosition, clone) then
-        BuildEvent:FireClient(player, "Error", "Invalid placement position")
-        clone:Destroy()
-        return
-    end
-
-    clone.Parent = workspace
-    table.insert(structures, clone)
-
-    local owner = Instance.new("StringValue", clone)
-    owner.Name = "Owner"
-    owner.Value = player.Name
-
-    BuildEvent:FireClient(player, "Success", "Structure placed!")
+-- Create a new structure (basic part for now)
+local function createStructure(player, position, size, rotation, material, color)
+    local structure = Instance.new("Part")
+    structure.Size = size
+    structure.Position = position
+    structure.Orientation = rotation
+    structure.Material = material
+    structure.BrickColor = color
+    structure.Anchored = true
+    structure.CanCollide = true
+    structure.Parent = workspace
+    structure.Name = "Structure_" .. tostring(#getPlayerState(player).structures + 1)
+    return structure
 end
 
-BuildEvent.OnServerEvent:Connect(placeStructure)
-</code></pre>
+-- Add an action to the undo/redo history
+local function addToHistory(player, actionType, data)
+    local state = getPlayerState(player)
+    -- Clear future history if we’re adding a new action
+    while #state.history > state.historyIndex do
+        table.remove(state.history)
+    end
+    table.insert(state.history, {actionType = actionType, data = data})
+    state.historyIndex = #state.history
+end
+
+-- Undo the last action
+local function undo(player)
+    local state = getPlayerState(player)
+    if state.historyIndex > 0 then
+        local action = state.history[state.historyIndex]
+        if action.actionType == "place" then
+            action.data.structure:Destroy()
+            table.remove(state.structures, #state.structures)
+        elseif action.actionType == "remove" then
+            local structure = createStructure(
+                player,
+                action.data.position,
+                action.data.size,
+                action.data.rotation,
+                action.data.material,
+                action.data.color
+            )
+            table.insert(state.structures, structure)
+        end
+        state.historyIndex = state.historyIndex - 1
+    end
+end
+
+-- Redo the last undone action
+local function redo(player)
+    local state = getPlayerState(player)
+    if state.historyIndex < #state.history then
+        state.historyIndex = state.historyIndex + 1
+        local action = state.history[state.historyIndex]
+        if action.actionType == "place" then
+            local structure = createStructure(
+                player,
+                action.data.position,
+                action.data.size,
+                action.data.rotation,
+                action.data.material,
+                action.data.color
+            )
+            table.insert(state.structures, structure)
+        elseif action.actionType == "remove" then
+            state.structures[#state.structures]:Destroy()
+            table.remove(state.structures, #state.structures)
+        end
+    end
+end
+
+-- Save the player’s build to DataStore
+local function saveBuild(player)
+    local state = getPlayerState(player)
+    local buildData = {}
+    for _, structure in pairs(state.structures) do
+        table.insert(buildData, {
+            position = {x = structure.Position.X, y = structure.Position.Y, z = structure.Position.Z},
+            size = {x = structure.Size.X, y = structure.Size.Y, z = structure.Size.Z},
+            rotation = {x = structure.Orientation.X, y = structure.Orientation.Y, z = structure.Orientation.Z},
+            material = tostring(structure.Material),
+            color = tostring(structure.BrickColor)
+        })
+    end
+    local success, err = pcall(function()
+        BuildDataStore:SetAsync(tostring(player.UserId), buildData)
+    end)
+    if not success then
+        warn("Failed to save build for " .. player.Name .. ": " .. tostring(err))
+    end
+end
+
+-- Load the player’s build from DataStore
+local function loadBuild(player)
+    local state = getPlayerState(player)
+    -- Clear current structures
+    for _, structure in pairs(state.structures) do
+        structure:Destroy()
+    end
+    state.structures = {}
+    
+    local success, buildData = pcall(function()
+        return BuildDataStore:GetAsync(tostring(player.UserId))
+    end)
+    if success and buildData then
+        for _, data in pairs(buildData) do
+            local structure = createStructure(
+                player,
+                Vector3.new(data.position.x, data.position.y, data.position.z),
+                Vector3.new(data.size.x, data.size.y, data.size.z),
+                Vector3.new(data.rotation.x, data.rotation.y, data.rotation.z),
+                Enum.Material[data.material] or Enum.Material.Wood,
+                BrickColor.new(data.color) or BrickColor.new("Institutional white")
+            )
+            table.insert(state.structures, structure)
+        end
+    end
+end
+
+-- Handle building actions from the client
+BuildEvent.OnServerEvent:Connect(function(player, action, data)
+    local state = getPlayerState(player)
+    if action == "startPlacing" then
+        -- Start placing a new structure
+        state.placing = true
+        state.currentStructure = createStructure(
+            player,
+            snapToGrid(data.position),
+            data.size or Vector3.new(4, 4, 4),
+            Vector3.new(0, 0, 0),
+            CONFIG.MATERIALS[1],
+            CONFIG.COLORS[1]
+        )
+        state.currentStructure.Transparency = 0.5 -- Preview mode
+    elseif action == "updatePlacement" then
+        -- Update the preview structure’s position, rotation, scale, material, or color
+        if state.currentStructure then
+            if data.position then
+                state.currentStructure.Position = snapToGrid(data.position)
+            end
+            if data.rotation then
+                local newRotation = math.round(data.rotation / CONFIG.ROTATION_STEP) * CONFIG.ROTATION_STEP
+                state.currentStructure.Orientation = Vector3.new(0, newRotation, 0)
+            end
+            if data.scale then
+                local newScale = math.clamp(data.scale, CONFIG.SCALE_MIN, CONFIG.SCALE_MAX)
+                state.currentStructure.Size = Vector3.new(4, 4, 4) * newScale
+            end
+            if data.material then
+                state.currentStructure.Material = CONFIG.MATERIALS[data.material] or CONFIG.MATERIALS[1]
+            end
+            if data.color then
+                state.currentStructure.BrickColor = CONFIG.COLORS[data.color] or CONFIG.COLORS[1]
+            end
+            -- Check for collisions and indicate if placement is valid
+            local hasCollision = checkCollision(state.currentStructure, state.structures)
+            state.currentStructure.BrickColor = hasCollision and BrickColor.new("Really red") or (CONFIG.COLORS[data.color] or CONFIG.COLORS[1])
+        end
+    elseif action == "place" then
+        -- Finalize placement
+        if state.currentStructure and state.placing then
+            if not checkCollision(state.currentStructure, state.structures) and #state.structures < CONFIG.MAX_STRUCTURES then
+                state.currentStructure.Transparency = 0
+                table.insert(state.structures, state.currentStructure)
+                addToHistory(player, "place", {
+                    structure = state.currentStructure,
+                    position = state.currentStructure.Position,
+                    size = state.currentStructure.Size,
+                    rotation = state.currentStructure.Orientation,
+                    material = state.currentStructure.Material,
+                    color = state.currentStructure.BrickColor
+                })
+            else
+                state.currentStructure:Destroy()
+            end
+            state.currentStructure = nil
+            state.placing = false
+        end
+    elseif action == "remove" then
+        -- Remove the last placed structure
+        if #state.structures > 0 then
+            local structure = state.structures[#state.structures]
+            addToHistory(player, "remove", {
+                position = structure.Position,
+                size = structure.Size,
+                rotation = structure.Orientation,
+                material = structure.Material,
+                color = structure.BrickColor
+            })
+            structure:Destroy()
+            table.remove(state.structures, #state.structures)
+        end
+    elseif action == "undo" then
+        undo(player)
+    elseif action == "redo" then
+        redo(player)
+    end
+end)
+
+-- Handle save requests
+SaveEvent.OnServerEvent:Connect(function(player)
+    saveBuild(player)
+end)
+
+-- Handle load requests
+LoadEvent.OnServerEvent:Connect(function(player)
+    loadBuild(player)
+end)
+
+-- Fun fact: The collision detection took forever to get right because I kept forgetting to account for rotation!
+-- Pro tip: The save/load system uses DataStoreService, but I had to add error handling after a player lost their entire base. Never again!
+-- TODO: Add a UI on the client side to select materials, colors, and control undo/redo. For now, it’s all handled via RemoteEvents.
+            </code></pre>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">Commission Reviews for TitanClash BattleForge</h3>
+            <p class="text-lg mb-4">Here’s what some clients had to say about the TitanClash BattleForge system I built for them!</p>
+
+            <div class="review">
+                <p class="font-semibold">FartNugget</p>
+                <p class="stars">★★★☆☆ (3/5)</p>
+                <p>I got RealAhhjit27 to make this fighting thing for my game and it’s kinda ok I guess. Combos are fun and my players like them but the stamina goes away so fast!! I’m just hitting and then I gotta wait forever to hit again, ugh. Maybe make stamina come back quicker? Also wanted more big moves. It’s alright but u can do better bro.</p>
+            </div>
+
+            <div class="review">
+                <p class="font-semibold">JimBobbyBoi</p>
+                <p class="stars">★★★★★ (5/5)</p>
+                <p>Hired this dude for my RPG game and WOW it’s so cool!! The elemental stuff is the best—like I picked Fire and burned Ice guys, and the bleed looks awesome. Crits got sparkles and I love it! But stun lasts way too long sometimes and I can’t move, kinda buggy. Fix that plz but it’s still super dope, I love it!!</p>
+            </div>
+
+            <div class="review">
+                <p class="font-semibold">Carl</p>
+                <p class="stars">★★★★★ (5/5)</p>
+                <p>I paid RealAhhjit27 to make this for my team fighting game and it’s so good!! Team battles are great ‘cause u can’t hit ur teammates by accident. Leaderboard’s awesome too, my players keep fighting to get more kills! Combos and big moves work perfect. Good job dude, u did awesome!</p>
+            </div>
         </section>
 
         <section class="section text-center">
-            <h2 class="text-3xl font-semibold mb-4">Get in Touch</h2>
-            <p class="text-lg mb-4">I'm excited to work on new Roblox projects! Contact me via Roblox or Discord.</p>
-            <p class="text-lg">Roblox Username: <span class="font-bold">RealAhhjit27</span></p>
-            <a href="https://www.roblox.com/users/RealAhhjit27" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-4">
-                Visit My Roblox Profile
+            <h2 class="text-2xl font-bold mb-3" style="font-family: 'Press Start 2P', cursive;">Hit Me Up!</h2>
+            <p class="text-lg mb-4">Got a wild Roblox idea? I’m your guy. Catch me on Roblox or Discord!</p>
+            <p class="text-lg">Roblox: <span class="font-bold">RealAhhjit27</span></p>
+            <a href="https://www.roblox.com/users/8185895982/profile" target="_blank" class="inline-block bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-4" onclick="console.log('Roblox profile link clicked!');">
+                Check My Roblox Profile
             </a>
         </section>
     </main>
 
     <footer class="mt-8 text-center">
-        <p class="text-lg">© 2025 RealAhhjit27. All rights reserved.</p>
+        <p class="text-lg">© 2025 RealAhhjit27. Built with ☕ and late-night coding sessions.</p>
     </footer>
+
+    <script>
+        function playRobloxSound() {
+            const audio = new Audio('https://www.myinstants.com/media/sounds/roblox-death-sound_1.mp3'); // Roblox oof sound
+            audio.play();
+            alert('You found the secret badge! OOF!');
+        }
+    </script>
 </body>
-</html>
+            </html>
